@@ -7,6 +7,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -25,6 +29,7 @@ import com.wanyama.newnavapp.navigation.ROUTE_SHOP
 @Composable
 fun HomeScreen( navController: NavHostController) {
     val spacing = MaterialTheme.spacing
+    var textMessage by remember { mutableStateOf("Welcome to our App") }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -47,7 +52,7 @@ fun HomeScreen( navController: NavHostController) {
         )
 */
         Text(
-            text = "Welcome to our App",
+            text = textMessage,
             style = MaterialTheme.typography.displaySmall,
             color = MaterialTheme.colorScheme.onSurface
         )
@@ -142,6 +147,16 @@ fun HomeScreen( navController: NavHostController) {
                         .padding(top = spacing.extraLarge)
                 ) {
                     Text(text = "Shop")
+                }
+
+                Button(
+                    onClick = {
+                        textMessage = "Hello King"
+                    },
+                    modifier = Modifier
+                        .padding(top = spacing.extraLarge)
+                ) {
+                    Text(text = "Click Me")
                 }
             }
 
