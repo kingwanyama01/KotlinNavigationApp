@@ -17,6 +17,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.wanyama.newnavapp.ui.theme.spacing
 import com.wanyama.newnavapp.R
+import com.wanyama.newnavapp.navigation.ROUTE_ABOUT
+import com.wanyama.newnavapp.navigation.ROUTE_HOME
+import com.wanyama.newnavapp.navigation.ROUTE_SERVICES
+import com.wanyama.newnavapp.navigation.ROUTE_SHOP
 
 @Composable
 fun HomeScreen( navController: NavHostController) {
@@ -43,7 +47,7 @@ fun HomeScreen( navController: NavHostController) {
         )
 */
         Text(
-            text = "viewModel?.currentUser?.displayName ?:"+ "",
+            text = "Welcome to our App",
             style = MaterialTheme.typography.displaySmall,
             color = MaterialTheme.colorScheme.onSurface
         )
@@ -100,19 +104,48 @@ fun HomeScreen( navController: NavHostController) {
                 )
             }
 
-            Button(
-                onClick = {
-                   /* viewModel?.logout()
-                    navController.navigate(ROUTE_LOGIN) {
-                        popUpTo(ROUTE_HOME) { inclusive = true }
-                    }*/
-                },
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(top = spacing.extraLarge)
-            ) {
-                Text(text = "Logout")
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Button(
+                    onClick = {
+                        /*navController.navigate(ROUTE_ABOUT) {
+                            popUpTo(ROUTE_HOME) { inclusive = true }
+                        }*/
+                        
+                        // REMOVE THE POP FUNCTION TO ALLOW SOMEONE COME BACK
+                        navController.navigate(ROUTE_ABOUT) 
+                    },
+                    modifier = Modifier
+                        .padding(top = spacing.extraLarge)
+                ) {
+                    Text(text = "About")
+                }
+
+                Button(
+                    onClick = {
+                        navController.navigate(ROUTE_SERVICES) {
+                            popUpTo(ROUTE_HOME) { inclusive = true }
+                        }
+                    },
+                    modifier = Modifier
+                        .padding(top = spacing.extraLarge)
+                ) {
+                    Text(text = "Service")
+                }
+
+                Button(
+                    onClick = {
+                        navController.navigate(ROUTE_SHOP) {
+                            popUpTo(ROUTE_HOME) { inclusive = true }
+                        }
+                    },
+                    modifier = Modifier
+                        .padding(top = spacing.extraLarge)
+                ) {
+                    Text(text = "Shop")
+                }
             }
+
+
         }
     }
 }
